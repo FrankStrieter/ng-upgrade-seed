@@ -6,7 +6,7 @@
       controller: function BookGridElementController() {
       },
       bindings: {
-        book: '='
+        book: '<'
       }
     });
 })();
