@@ -22,5 +22,9 @@ import { UpgradeModule } from '@angular/upgrade/static'
   bootstrap: [AppComponent]
 })
 export class AppModule {
+ constructor(private upgrade: UpgradeModule) { }
 
+ ngDoBootstrap() {
+   this.upgrade.bootstrap(document.body, ['myApp'], { strictDi: true });
+ }
 }

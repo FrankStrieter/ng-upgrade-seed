@@ -1,9 +1,8 @@
 
- angular.module('myApp', [
+angular.module('myApp', [
   'bookGridComponent',
   'bookGridElementComponent'
-  ]
- )
+]);
 
 /**
 import { UpgradeAdapter } from '@angular/upgrade';
