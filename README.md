@@ -1,4 +1,3 @@
-# Disclaimer: This Project isn't working :-( 
 
 # NgUpgrade
 
