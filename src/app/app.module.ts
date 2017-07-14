@@ -1,26 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { UpgradeModule } from '@angular/upgrade/static'
-//import { BookGridComponent, BookGridElementComponent } from 'app/upgrade-adapter';
+import { UpgradeModule } from '@angular/upgrade/static';
 
+import { BookGridDirective } from './upgraded-components/book-grid/book-grid.directive'
+import { BookGridElementDirective } from './upgraded-components/book-grid-element/book-grid-element.directive';
+import { downgradeComponent } from '@angular/upgrade/static';
 
+declare var angular;
 
-
+angular
+  .module('myApp')
+  .directive(
+    'appRoot',
+    downgradeComponent({ component: AppComponent })
+  );
 
 @NgModule({
   declarations: [
     AppComponent,
-    // BookGridComponent,
-    // BookGridElementComponent
+    BookGridDirective,
+    BookGridElementDirective
   ],
   imports: [
     BrowserModule,
     UpgradeModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [
+    AppComponent
+  ]
 })
 export class AppModule {
+  constructor(private upgrade: UpgradeModule) {  }
 
+  ngDoBootstrap() {
+    this.upgrade.bootstrap(document.body, ['myApp'], { strictDi: true });
+  }
 }
